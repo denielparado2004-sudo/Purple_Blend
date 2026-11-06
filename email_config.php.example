@@ -1,0 +1,14 @@
+<?php
+// Copy this file to email_config.php and fill in your SMTP provider's details.
+// Never commit/share email_config.php or your SMTP password.
+return [
+    'smtp_host' => 'smtp.gmail.com',
+    'smtp_port' => 587,
+    'smtp_secure' => PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS,
+    'smtp_username' => 'your-sender@gmail.com',
+    'smtp_password' => 'YOUR_GOOGLE_APP_PASSWORD',
+    'from_email' => 'your-sender@gmail.com',
+    'from_name' => 'The Purple Blend',
+    // Local XAMPP URL; update this when deployed.
+    'base_url' => 'http://localhost/Purple_Blend/Customer_Side'
+];

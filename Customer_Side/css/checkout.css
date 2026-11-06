@@ -1,0 +1,895 @@
+
+/* =========================
+   PURPLE BLEND CHECKOUT
+========================= */
+
+/* Checkout layout, order summary, schedule, and payment controls. */
+.checkout-page {
+    width: min(1120px, calc(100% - 48px));
+    margin: 36px auto 52px;
+}
+
+.checkout-container > h1 {
+    margin-bottom: 8px;
+    color: var(--text);
+    font-size: clamp(27px, 4vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.8px;
+}
+
+.checkout-subtitle {
+    max-width: 650px;
+    margin-bottom: 28px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.checkout-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    align-items: start;
+    gap: 24px;
+}
+
+.checkout-details,
+.checkout-payment {
+    min-width: 0;
+    padding: 26px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--white);
+    box-shadow: 0 8px 28px rgba(78, 23, 107, 0.055);
+}
+
+.checkout-details h2,
+.checkout-payment h2 {
+    margin-bottom: 20px;
+    color: var(--text);
+    font-size: 19px;
+    font-weight: 800;
+}
+
+/* Order items */
+
+.checkout-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.checkout-item:first-of-type {
+    padding-top: 4px;
+}
+
+.checkout-item:last-of-type {
+    border-bottom: 0;
+}
+
+.checkout-item-product {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+}
+
+.checkout-item-image {
+    display: grid;
+    flex: 0 0 70px;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    place-items: center;
+    border: 1px solid #eee3f4;
+    border-radius: 12px;
+    background: var(--light-purple);
+}
+
+.checkout-item-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.checkout-image-placeholder {
+    padding: 5px;
+    color: var(--muted);
+    font-size: 10px;
+    text-align: center;
+}
+
+.checkout-item-info {
+    min-width: 0;
+}
+
+.checkout-quantity-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 9px;
+    padding: 3px;
+    border: 1px solid #e6d9ed;
+    border-radius: 9px;
+    background: #fbf8fc;
+}
+
+.checkout-quantity-control button {
+    display: grid;
+    width: 30px;
+    height: 30px;
+    place-items: center;
+    border: 0;
+    border-radius: 6px;
+    background: #f1e7f6;
+    color: var(--purple);
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.checkout-quantity-control button:hover:not(:disabled) {
+    background: var(--purple);
+    color: var(--white);
+}
+
+.checkout-quantity-control button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.checkout-quantity-control span {
+    min-width: 18px;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.checkout-item strong {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.checkout-item p {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.checkout-item .checkout-item-stock {
+    color: var(--muted);
+}
+
+.checkout-item .checkout-item-out-of-stock {
+    color: #b42318;
+    font-weight: 700;
+}
+
+.checkout-item > strong {
+    flex-shrink: 0;
+    color: var(--purple);
+    text-align: right;
+}
+
+/* Order total */
+
+.checkout-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px dashed #d9c8e3;
+    color: var(--text);
+    font-size: 15px;
+}
+
+.checkout-total strong {
+    color: var(--purple);
+    font-size: 22px;
+    font-weight: 800;
+}
+
+/* Dining and schedule form fields */
+
+.checkout-details input[type="date"],
+.checkout-details input[type="time"],
+.checkout-details input[type="text"],
+.checkout-details select,
+.checkout-details textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 46px;
+    padding: 11px 13px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    outline: none;
+    background: #fff;
+    color: var(--text);
+    font: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.checkout-details input:focus,
+.checkout-details select:focus,
+.checkout-details textarea:focus {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px rgba(111, 43, 145, 0.11);
+}
+
+/* Clickable Dine-in / Takeout options.
+   Supports common radio-card markup. */
+
+.checkout-details input[type="radio"] {
+    accent-color: var(--purple);
+}
+
+.checkout-details label:has(input[type="radio"]) {
+    cursor: pointer;
+}
+
+.checkout-details label:has(input[type="radio"]) {
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+/* Highlight a selected option when the radio is inside its label */
+.checkout-details label:has(input[type="radio"]:checked) {
+    color: var(--dark-purple);
+}
+
+/* Payment */
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    background: #fff;
+    color: var(--text);
+    font-size: 14px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.payment-option + .payment-option {
+    margin-top: 10px;
+}
+
+.payment-option:has(input:checked) {
+    border-color: var(--purple);
+    background: var(--light-purple);
+}
+
+.payment-option input {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    accent-color: var(--purple);
+}
+
+.checkout-note {
+    margin: 16px 0;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--light-purple);
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* Place order */
+
+#placeOrderButton {
+    display: block;
+    width: 100%;
+    min-height: 49px;
+    margin-top: 18px;
+    padding: 13px 18px;
+    border: 0;
+    border-radius: 11px;
+    background: var(--purple);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 5px 14px rgba(111, 43, 145, 0.16);
+    transition: background 0.2s ease, transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#placeOrderButton:hover:not(:disabled) {
+    transform: translateY(-1px);
+    background: var(--dark-purple);
+    box-shadow: 0 8px 18px rgba(111, 43, 145, 0.22);
+}
+
+#placeOrderButton:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+#placeOrderButton:disabled {
+    background: #c9bdcf;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+#checkoutMessage {
+    margin-top: 13px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.back-to-cart {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    color: var(--purple);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.back-to-cart:hover {
+    color: var(--dark-purple);
+    text-decoration: underline;
+}
+
+/* Footer */
+
+.checkout-footer {
+    margin-top: 20px;
+    padding: 22px 16px;
+    border-top: 1px solid var(--border);
+    background: var(--white);
+    color: var(--muted);
+    text-align: center;
+    font-size: 12px;
+}
+
+/* Tablet */
+
+@media (max-width: 850px) {
+    .checkout-layout {
+        grid-template-columns: minmax(0, 1fr) 290px;
+        gap: 16px;
+    }
+
+    .checkout-details,
+    .checkout-payment {
+        padding: 21px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+    .checkout-page {
+        width: min(100% - 32px, 560px);
+        margin: 26px auto 36px;
+    }
+
+    .checkout-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .checkout-payment {
+        order: 0;
+    }
+}
+
+@media (max-width: 420px) {
+    .checkout-page {
+        width: calc(100% - 24px);
+        margin-top: 20px;
+    }
+
+    .checkout-details,
+    .checkout-payment {
+        padding: 18px 15px;
+        border-radius: 14px;
+    }
+
+    .checkout-item {
+        gap: 10px;
+    }
+
+    .checkout-item-product {
+        gap: 10px;
+    }
+
+    .checkout-item-image {
+        flex-basis: 58px;
+        width: 58px;
+        height: 58px;
+    }
+
+    .checkout-item strong {
+        font-size: 13px;
+    }
+
+    .checkout-item p {
+        font-size: 12px;
+    }
+
+    .checkout-total strong {
+        font-size: 20px;
+    }
+}
+
+/*======================================================================================*/
+
+/* ===== DINING OPTION CARDS ===== */
+
+.dining-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin: 12px 0 28px;
+}
+
+.dining-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    min-width: 0;
+    padding: 20px 18px;
+    border: 2px solid #e9ddef;
+    border-radius: 16px;
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease,
+        box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.dining-card:hover {
+    border-color: #b78acb;
+    transform: translateY(-2px);
+}
+
+.dining-card:has(input:checked) {
+    border-color: var(--purple);
+    background: #f8f1fc;
+    box-shadow: 0 4px 16px rgba(111, 43, 145, 0.10);
+}
+
+.dining-card input[type="radio"] {
+    position: absolute;
+    top: 17px;
+    right: 17px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--purple);
+}
+
+.dining-card-icon {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border-radius: 12px;
+    background: #f0e2f7;
+    color: var(--purple);
+    font-size: 23px;
+}
+
+.dining-card strong {
+    padding-right: 22px;
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.dining-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* ===== RESERVATION / PICKUP SCHEDULE ===== */
+
+.schedule-section {
+    margin-top: 8px;
+    padding: 22px;
+    border: 1px solid #e9ddef;
+    border-radius: 16px;
+    background: #fcf9fe;
+}
+
+.schedule-section h2 {
+    margin-bottom: 7px;
+}
+
+.schedule-description {
+    margin-bottom: 20px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.schedule-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.schedule-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.schedule-field label {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.schedule-field input {
+    width: 100%;
+    min-width: 0;
+    min-height: 47px;
+    padding: 11px 12px;
+    border: 1px solid #dfcde8;
+    border-radius: 10px;
+    background: #fff;
+    color: var(--text);
+    font: inherit;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.schedule-field input:focus {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px rgba(111, 43, 145, 0.12);
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 520px) {
+    .dining-options {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .dining-card {
+        padding: 16px;
+    }
+
+    .schedule-section {
+        padding: 17px 14px;
+    }
+
+    .schedule-fields {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+}
+
+/*======================================================================================*/
+
+/* Modern pickup and reservation time fields */
+
+.checkout-loading-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 9px;
+    vertical-align: -3px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: checkout-spinner 0.7s linear infinite;
+}
+
+@keyframes checkout-spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .checkout-loading-spinner {
+        animation-duration: 1.8s;
+    }
+}
+
+.schedule-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.schedule-field {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    min-width: 0;
+}
+
+.schedule-field label {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.schedule-time-help {
+    margin: -4px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.schedule-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    min-height: 54px;
+    padding: 0 14px;
+    border: 1px solid #e4d5ec;
+    border-radius: 12px;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.schedule-input-wrap:focus-within {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px rgba(111, 43, 145, 0.10);
+}
+
+.schedule-input-icon {
+    flex-shrink: 0;
+    font-size: 21px;
+}
+
+.schedule-input-wrap input {
+    width: 100%;
+    min-width: 0;
+    min-height: 50px;
+    padding: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 13px;
+}
+
+.schedule-input-wrap input:focus {
+    box-shadow: none;
+}
+
+@media (max-width: 520px) {
+    .schedule-fields {
+        grid-template-columns: 1fr;
+    }
+}
+
+/*======================================================================================*/
+
+/* Restore the checkout schedule design */
+
+.schedule-section {
+    margin-top: 22px;
+    padding: 22px;
+    border: 1px solid #e4d5ec;
+    border-radius: 16px;
+    background: #fcf9fe;
+}
+
+.schedule-section h2 {
+    margin: 0 0 8px;
+    color: var(--text);
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.schedule-description {
+    margin: 0 0 20px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.schedule-fields {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    width: 100%;
+}
+
+.schedule-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+}
+
+.schedule-input-wrap {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.schedule-input-wrap input {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+
+.schedule-field label {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.schedule-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    min-height: 52px;
+    padding: 0 12px;
+    border: 1px solid #e4d5ec;
+    border-radius: 11px;
+    background: #fff;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.schedule-input-wrap:focus-within {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px rgba(111, 43, 145, 0.10);
+}
+
+.schedule-input-icon {
+    flex-shrink: 0;
+    font-size: 19px;
+}
+
+.schedule-input-wrap input {
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+    padding: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 13px;
+    box-shadow: none;
+}
+
+.schedule-input-wrap input:focus {
+    border: 0;
+    box-shadow: none;
+}
+
+.schedule-section .checkout-note {
+    margin: 16px 0 0;
+    padding: 12px;
+    border-radius: 9px;
+    background: #f1e6f7;
+    color: #674b75;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+@media (max-width: 520px) {
+    .schedule-section {
+        padding: 17px 14px;
+    }
+
+    .schedule-fields {
+        grid-template-columns: 1fr;
+    }
+}
+
+/*======================================================================================*/
+
+/* Compact checkout layout */
+
+.checkout-page {
+    margin-top: 20px;
+    margin-bottom: 24px;
+}
+
+.checkout-subtitle {
+    margin-bottom: 18px;
+}
+
+.checkout-layout {
+    gap: 16px;
+}
+
+.checkout-details,
+.checkout-payment {
+    padding: 18px;
+}
+
+.checkout-details h2,
+.checkout-payment h2 {
+    margin-bottom: 12px;
+}
+
+/* Shorter dining cards */
+.dining-options {
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.dining-card {
+    padding: 10px;
+    row-gap: 2px;
+}
+
+.dining-card-icon {
+    font-size: 21px;
+}
+
+.dining-card p {
+    font-size: 11px;
+    line-height: 1.3;
+}
+
+/* Reduce schedule spacing */
+.schedule-section {
+    margin-top: 14px;
+    padding: 16px;
+}
+
+.schedule-description {
+    margin-bottom: 12px;
+}
+
+.schedule-fields {
+    gap: 12px;
+}
+
+/* Reduce customer notes spacing */
+.order-notes-section {
+    margin-top: 14px;
+}
+
+.order-notes-section textarea {
+    min-height: 75px;
+}
+
+/* Compact payment buttons */
+.place-order-btn {
+    margin-top: 12px;
+}
+
+.back-to-cart-btn {
+    margin-top: 8px;
+}
+
+@media (max-width: 760px) {
+    .checkout-page {
+        margin-top: 16px;
+    }
+
+    .checkout-details,
+    .checkout-payment {
+        padding: 15px;
+    }
+}

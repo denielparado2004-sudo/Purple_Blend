@@ -1,0 +1,3 @@
+<FilesMatch "(?i)\.sql$">
+    Require all denied
+</FilesMatch>
